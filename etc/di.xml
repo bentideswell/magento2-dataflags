@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © FishPig Limited. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="FishPig\DataFlags\Model\Flag">
+        <arguments>
+            <argument name="typeMap" xsi:type="array">
+                <item name="order" xsi:type="string">Magento\Sales\Model\Order</item>
+                <item name="invoice" xsi:type="string">Magento\Sales\Model\Order\Invoice</item>
+                <item name="creditmemo" xsi:type="string">Magento\Sales\Model\Order\Creditmemo</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,17 @@
+{
+    "name": "fishpig/magento2-dataflags",
+    "description": "Provide flagging functionality against Magento objects.",
+    "version": "1.0.0",
+    "require": {
+        "magento/framework": "*"
+    },
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "FishPig\\DataFlags\\": ""
+        }
+    }
+}

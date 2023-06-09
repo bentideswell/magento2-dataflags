@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © FishPig Limited. All rights reserved.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="fishpig_dataflag" resource="sales" engine="innodb" comment="DataFlags by FishPig">
+        <column xsi:type="int" name="flag_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Flag ID"/>
+        <column xsi:type="varchar" name="object_type" nullable="true" length="64" comment="Object Type"/>
+        <column xsi:type="int" name="object_id" unsigned="true" nullable="false" identity="false" comment="Object ID"/>
+        <column xsi:type="varchar" name="flag" nullable="true" length="64" comment="Flag"/>
+        <column xsi:type="smallint" name="value" unsigned="true" nullable="false" identity="false"
+                comment="Flag Value"/>
+        <column xsi:type="varchar" name="message" nullable="true" length="255" comment="Message"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="flag_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="FISHPIG_DATAFLAG_OBJECT_TYPE_OBJECT_ID_FLAG">
+            <column name="object_type"/>
+            <column name="object_id"/>
+            <column name="flag"/>
+        </constraint>
+    </table>
+</schema>
