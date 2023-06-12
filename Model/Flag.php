@@ -117,11 +117,25 @@ class Flag implements FlagInterface
 
         $alias = 'dataflag_' . $flag;
 
+        $connection = $collection->getConnection();
+
         $collection->getSelect()->$joinType(
-            [$alias => $this->getFlagTable()],
-            $collection->getConnection()->quoteInto(
-                "$alias.object_id = main_table.$idField AND {$alias}.object_type = ?",
-                $objectType
+            [
+                $alias => $this->getFlagTable()
+            ],
+            implode(
+                ' AND ',
+                [
+                    "{$alias}.object_id = main_table.{$idField}",
+                    $connection->quoteInto(
+                        "{$alias}.object_type = ?",
+                        $objectType
+                    ),
+                    $connection->quoteInto(
+                        "{$alias}.flag = ?",
+                        $flag
+                    )
+                ]
             ),
             [
                 $alias  . '_value' => 'value',
